@@ -1,0 +1,21 @@
+.DS_Store
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+
+# Local scratch and generated output
+/tmp/
+/out/
+/dist/
+
+# Editor and OS noise
+/.vscode/
+/.idea/
+
+# Generated state we do not want tracked if copied accidentally
+**/.claude/settings.local.json
+**/buffers/
+**/backups/

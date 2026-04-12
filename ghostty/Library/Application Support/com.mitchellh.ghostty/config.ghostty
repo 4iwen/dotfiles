@@ -1,0 +1,23 @@
+font-family = JetBrainsMono Nerd Font
+font-size = 12
+font-feature = liga
+font-feature = calt
+
+theme = GitHub Dark Colorblind
+
+cursor-style = block
+cursor-style-blink = false
+
+background-opacity = 1.0
+
+scrollback-limit = 50000000
+copy-on-select = false
+selection-invert-fg-bg = false
+
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+
+shell-integration-features = no-cursor
+
+bell-features = no-system,no-audio,no-attention,no-title,no-border
+confirm-close-surface = false

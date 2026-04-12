@@ -1,0 +1,83 @@
+filetype: jai
+
+detect:
+    filename: "(\\.(jai)$)"
+
+rules:
+    - identifier: "\\b[A-Z_][0-9A-Z_]+\\b"
+
+    # This highlights PascalCase or Ada_Case types as types.
+    # Jai does not enforce any code styles, so this is not part of the language
+    # however I left it here in case anyone wants it
+    #
+    # - type: "\\b[A-Z][A-Za-z0-9_]+\\b"
+
+    # Comment this if youd like ALL_CAPS identifiers to not be highlighted
+    # as constants.
+    #
+    - identifier.constant: "\\b[A-Z_][A-Z_0-9]+\\b"
+
+
+    - identifer: "\\$[A-Za-z_][0-9A-Za-z_]+"
+    - type: "\\b(__reg|bool|float|float32|float64|int|reg|s16|s32|s64|s8|string|u16|u32|u64|u8|void|v128|Any|Code|Type)\\b"
+    - type: "\\$\\w+"
+
+    - preproc: "using,(only|except|map)"
+    - preproc: "cast,(no_check|trunc|force)"
+    - preproc: "xx,(no_check|trunc|force)"
+    - preproc: "push_context,defer_pop"
+
+    - statement: "\\b(break|case|cast|code_of|continue|defer|else|enum|enum_flags|for|initializer_of|if|ifx|is_constant|inline|push_context|return|size_of|struct|then|type_info|type_of|union|using|while|xx|operator|remove|interface|no_inline)\\b"
+
+    # directive modifiers
+    - statement: "#type,(isa|distinct)"
+    - statement: "#import,(file|dir|string)"
+    - statement: "#insert,scope"
+    - statement: "#run,stallable"
+    - statement: "#library,(no_static_library|no_dll|system|link_always)"
+    - statement: "#system_library,(no_static_library|no_dll|link_always)"
+    - statement: "#string,cr"
+
+    - preproc: "(#add_context|#align|#asm|#assert|#as|#bake_arguments|#bake_constants|#bytes|#c_call|#caller_code|#caller_location|#char|#code|#compiler|#complete|#cpp_method|#cpp_return_type_is_non_pod|#deprecated|#dump|#dynamic_specialize|#elsewhere|#expand|#filepath|#file|#foreign|#library|#system_library|#if|#ifx|#import|#insert|#insert_internal|#intrinsic|#line|#load|#location|#modify|#module_parameters|#must|#no_abc|#no_aoc|#no_alias|#no_context|#no_padding|#no_reset|#place|#placeholder|#poke_name|#procedure_of_call|#program_export|#run|#runtime_support|#scope_export|#scope_file|#scope_module|#specified|#string|#symmetric|#this|#through|#type|#type_info_no_size_complaint|#type_info_none|#type_info_procedures_are_void_pointers|#compile_time|#no_debug|#procedure_name|#discard|#entry_point|#Context|#v2)"
+
+    - symbol.operator: "[-+*/%=<>\\.:;,~&|^!?]"
+    - symbol.brackets: "[(){}]|\\[|\\]"
+
+      # Integer Constants
+    - constant.number: "(\\b([0-9_]+|0x[0-9A-Fa-f_]+|0b[01_]+)\\b)"
+
+      # Decimal Floating Constants
+    - constant.number: "\\b[0-9]*\\.[0-9]+\\b"
+    - constant.number: "\\.[0-9]+\\b"
+    - constant.number: "\\b[0-9]+\\."
+
+    - constant.bool: "(\\b(true|false)\\b)"
+    - special: "(\\b(context|it|it_index|null|temp)\\b)"
+    - special: "@\\w+"
+
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            # I have no idea if Jai supports all of these!
+            - constant.specialChar: "\\\\([\"'abfnrtv\\\\]|[0-3]?[0-7]{1,2}|x[0-9A-Fa-f]{1,2}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})"
+            - constant.specialChar: "%"
+
+    # It is currently impossible to use backreferences with go's crappy regex.
+    # As such, it is impossible to my knowledge to capture `#string DONE ... DONE`
+    # and even if it were possible, it would color the `#string` too :'(
+    #
+    # - constant.string: "#string (?P<start>\\w+)\\S.+(?P<start>\\w+)"
+
+    - comment:
+        start: "//"
+        end: "$"
+        rules:
+            - todo: "(?i)(@cleanup|@todo|@incomplete|@@|@hack)"
+
+    - comment:
+        start: "/\\*"
+        end: "\\*/"
+        rules:
+            - todo: "(?i)(@cleanup|@todo|@incomplete|@@|@hack)"

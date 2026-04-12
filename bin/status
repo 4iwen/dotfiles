@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+
+echo "sources"
+while IFS='|' read -r package rel_path entry_type; do
+  source_path="${TARGET_HOME}/${rel_path}"
+  if [[ -e "${source_path}" ]]; then
+    echo "present  ${rel_path} -> ${package}"
+  else
+    echo "missing  ${rel_path} -> ${package}"
+  fi
+done < <(manifest_entries)
+
+echo
+echo "backup excludes"
+backup_excludes | sed 's/^/ignore   /'
+
+echo
+echo "packages with tracked files"
+available_packages | sed 's/^/package  /'
+
+echo
+if command -v stow >/dev/null 2>&1; then
+  echo "restore dry-run"
+  "${REPO_ROOT}/bin/restore"
+else
+  echo "restore dry-run unavailable: stow is not installed"
+fi

@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+
+copy_file() {
+  local source_path=$1
+  local package=$2
+  local rel_path=$3
+  local dest_path="${REPO_ROOT}/${package}/${rel_path}"
+
+  mkdir -p "$(dirname "${dest_path}")"
+  cp "${source_path}" "${dest_path}"
+  echo "synced file: ${rel_path} -> ${package}/${rel_path}"
+}
+
+copy_dir() {
+  local source_path=$1
+  local package=$2
+  local rel_path=$3
+  local dest_path="${REPO_ROOT}/${package}/${rel_path}"
+  local rsync_args=(-a --delete --delete-excluded)
+
+  while IFS= read -r pattern; do
+    [[ -n "${pattern}" ]] || continue
+    rsync_args+=(--exclude "${pattern}")
+  done < <(backup_excludes)
+
+  mkdir -p "${dest_path}"
+  rsync "${rsync_args[@]}" "${source_path}/" "${dest_path}/"
+  echo "synced dir: ${rel_path}/ -> ${package}/${rel_path}/"
+}
+
+while IFS='|' read -r package rel_path entry_type; do
+  source_path="${TARGET_HOME}/${rel_path}"
+
+  if [[ ! -e "${source_path}" ]]; then
+    echo "skipped missing: ${rel_path}"
+    continue
+  fi
+
+  case "${entry_type}" in
+    file)
+      copy_file "${source_path}" "${package}" "${rel_path}"
+      ;;
+    dir)
+      copy_dir "${source_path}" "${package}" "${rel_path}"
+      ;;
+    *)
+      echo "unknown manifest type for ${rel_path}: ${entry_type}" >&2
+      exit 1
+      ;;
+  esac
+done < <(manifest_entries)
+
+echo
+echo "review with: git status --short"

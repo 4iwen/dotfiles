@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+
+usage() {
+  cat <<'EOF'
+Usage: bin/restore [--apply] [--package NAME]
+
+Runs stow against the dotfiles repo. Dry-run is the default.
+EOF
+}
+
+if ! command -v stow >/dev/null 2>&1; then
+  echo "stow is required for restore. Install it first, for example: brew install stow" >&2
+  exit 1
+fi
+
+apply=0
+package=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --apply)
+      apply=1
+      shift
+      ;;
+    --package)
+      [[ $# -ge 2 ]] || {
+        echo "--package requires a value" >&2
+        exit 1
+      }
+      package=$2
+      shift 2
+      ;;
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "unknown argument: $1" >&2
+      usage >&2
+      exit 1
+      ;;
+  esac
+done
+
+if [[ -n "${package}" ]] && ! package_exists "${package}"; then
+  echo "unknown package: ${package}" >&2
+  exit 1
+fi
+
+if [[ -n "${package}" ]] && ! package_has_files "${package}"; then
+  echo "package has no tracked files yet: ${package}" >&2
+  exit 1
+fi
+
+stow_args=(--target "${TARGET_HOME}" --dir "${REPO_ROOT}" -v)
+if [[ ${apply} -eq 0 ]]; then
+  stow_args+=(-n)
+  echo "dry-run restore"
+else
+  echo "applying restore"
+fi
+
+if [[ -n "${package}" ]]; then
+  packages=("${package}")
+else
+  packages=()
+  while IFS= read -r pkg; do
+    [[ -n "${pkg}" ]] || continue
+    packages+=("${pkg}")
+  done < <(available_packages)
+fi
+
+for pkg in "${packages[@]}"; do
+  echo
+  echo "package: ${pkg}"
+  stow "${stow_args[@]}" "${pkg}"
+done
