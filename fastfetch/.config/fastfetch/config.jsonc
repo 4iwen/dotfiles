@@ -1,0 +1,92 @@
+{
+	"$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+
+	"logo": {
+		"type": "auto",
+		"source": "macos",
+		"color": {
+			"1": "#c9d1d9",
+			"2": "#c9d1d9",
+			"3": "#c9d1d9",
+			"4": "#c9d1d9",
+			"5": "#c9d1d9",
+			"6": "#c9d1d9",
+			"7": "#c9d1d9",
+			"8": "#c9d1d9",
+			"9": "#c9d1d9"
+		},
+		"padding": {
+			"top": 1,
+			"left": 2,
+			"right": 2
+		}
+	},
+
+	"display": {
+		"separator": "  ",
+		"disableLinewrap": true,
+		"color": {
+			"keys": "default",
+			"title": "default",
+			"output": "default",
+			"separator": "default"
+		},
+		"key": {
+			"width": 16,
+			"paddingLeft": 2
+		}
+	},
+
+	"modules": [
+		{
+			"type": "os",
+			"key": "  OS"
+		},
+		{
+			"type": "host",
+			"key": "󰌢  Mac"
+		},
+		{
+			"type": "uptime",
+			"key": "  Uptime"
+		},
+		{
+			"type": "shell",
+			"key": "  Shell"
+		},
+		{
+			"type": "terminal",
+			"key": "  Terminal"
+		},
+		{
+			"type": "display",
+			"key": "󰍹  Display",
+			"compactType": "original"
+		},
+		{
+			"type": "cpu",
+			"key": "  CPU",
+			"temp": false
+		},
+		{
+			"type": "gpu",
+			"key": "󰾲  GPU",
+			"hideType": "integrated"
+		},
+		{
+			"type": "memory",
+			"key": "  Memory"
+		},
+		{
+			"type": "disk",
+			"key": "  Disk",
+			"folders": "/",
+			"showExternal": false,
+			"showHidden": false
+		},
+		{
+			"type": "battery",
+			"key": "  Battery"
+		}
+	]
+}

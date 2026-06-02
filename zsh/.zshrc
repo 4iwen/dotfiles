@@ -112,3 +112,7 @@ export EDITOR="micro"
 export VISUAL="micro"
 
 . "$HOME/.local/bin/env"
+
+if [[ -o interactive ]] && command -v fastfetch >/dev/null 2>&1; then
+	fastfetch
+fi

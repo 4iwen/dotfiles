@@ -12,6 +12,7 @@ oh-my-zsh|.oh-my-zsh/custom/themes|dir
 git|.gitconfig|file
 git|.config/git|dir
 micro|.config/micro|dir
+fastfetch|.config/fastfetch|dir
 ghostty|Library/Application Support/com.mitchellh.ghostty/config.ghostty|file
 EOF
 }

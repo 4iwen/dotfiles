@@ -10,6 +10,7 @@ This repository keeps a git-managed backup of selected dotfiles in a Stow-style 
 - `~/.gitconfig`
 - `~/.config/git/`
 - `~/.config/micro/`
+- `~/.config/fastfetch/`
 - `~/Library/Application Support/com.mitchellh.ghostty/config.ghostty`
 
 ## Commands
