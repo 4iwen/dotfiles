@@ -1,3 +1,15 @@
 {
-    "colorscheme": "github-dark-colorblind"
+    "colorscheme": "gruber-darker",
+	"tabsize": 4,
+	"tabstospaces": false,
+	"autoindent": true,
+	"ruler": true,
+    "softwrap": false,
+    "mkparents": true,
+    "clipboard": "external",
+    "scrollbar": true,
+    "diffgutter": true,
+    "autosu": false,
+    "statusformatl": "file type: $(opt:filetype) | lsp: $(mlsp.status) | $(filename) $(modified)($(line),$(col))",
+    "lsp.server": "c++=clangd,html=vscode-html-language-server --stdio,odin=ols"
 }

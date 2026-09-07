@@ -1,9 +1,18 @@
 SHELL := /bin/bash
 
-.PHONY: backup restore restore-package status
+.PHONY: backup install install-package manage restore restore-package status
 
 backup:
 	bash ./bin/backup
+
+manage:
+	bash ./bin/manage
+
+install:
+	bash ./bin/install
+
+install-package:
+	bash ./bin/install --package "$(PACKAGE)"
 
 restore:
 	bash ./bin/restore $(if $(APPLY),--apply,)

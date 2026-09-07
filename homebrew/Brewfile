@@ -1,0 +1,147 @@
+tap "anomalyco/tap"
+tap "aprilnea/tap", trusted: { casks: ["openlogi@latest"] }
+tap "danielgatis/imgcat"
+tap "hudochenkov/sshpass"
+tap "nikitabobko/tap"
+tap "shivammathur/php"
+tap "sikarugir-app/sikarugir", "https://github.com/Sikarugir-App/homebrew-sikarugir"
+# JSON parser for C
+brew "json-c"
+# Core application library for C
+brew "glib"
+# Vector graphics library with cross-device output support
+brew "cairo"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
+# Object-file caching compiler wrapper
+brew "ccache"
+# OpenType text shaping engine
+brew "harfbuzz"
+# New file format for still image compression
+brew "jpeg-xl"
+# Library to render SVG files using Cairo
+brew "librsvg"
+# Versatile and fast Unicode/ASCII/ANSI graphics renderer
+brew "chafa"
+# Cross-platform make
+brew "cmake"
+# Generate documentation for several programming languages
+brew "doxygen"
+# GNU Emacs text editor
+brew "emacs"
+# Like neofetch, but much faster because written mostly in C
+brew "fastfetch"
+# Low-level access to audio, keyboard, mouse, joystick, and graphics
+brew "sdl3"
+# SDL2 compatibility layer that uses SDL3 behind the scenes
+brew "sdl2-compat"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
+# Text editor for your terminal: easy, powerful and fast
+brew "fresh-editor"
+# GitHub command-line tool
+brew "gh"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
+# Git extension for versioning large files
+brew "git-lfs"
+# OpenGL and OpenGL ES reference compiler for shading languages
+brew "glslang"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Open source programming language to build simple/reliable/efficient software
+brew "go@1.23"
+# Postgres C API library
+brew "libpq"
+# LLM inference in C/C++
+brew "llama.cpp"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.14"
+# Next-gen compiler infrastructure
+brew "llvm"
+# Modern and intuitive terminal-based text editor
+brew "micro"
+# Minimalist GNU for Windows and GCC cross-compilers
+brew "mingw-w64"
+# Implementation of the Vulkan graphics and compute API on top of Metal
+brew "molten-vk"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Small build system for use with gyp or CMake
+brew "ninja"
+# Port scanning utility for large networks
+brew "nmap"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Simple and easy-to-use library to learn videogames programming
+brew "raylib"
+# Programming language with focus on simplicity, performance and modern systems
+brew "odin"
+# Formatter for The Odin Programming Language
+brew "odinfmt"
+# Language server for The Odin Programming Language
+brew "ols"
+# AI coding agent, built for the terminal
+brew "opencode"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
+# Terminal multiplexer
+brew "tmux"
+# Vulkan ICD Loader
+brew "vulkan-loader"
+# Vulkan utilities and tools
+brew "vulkan-tools"
+# Web Assembly Binary Toolkit
+brew "wabt"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+# Generate your Xcode project from a spec file and your folder structure
+brew "xcodegen"
+# Cross-platform build utility based on Lua
+brew "xmake"
+# Programming language designed for robustness, optimality, and clarity
+brew "zig"
+brew "hudochenkov/sshpass/sshpass", trusted: true
+# Enable Windows-like alt-tab
+cask "alt-tab"
+# 3D creation suite
+cask "blender"
+# Family of tools to build, test and package software
+cask "cmake-app"
+# Developer platform
+cask "dotnet-sdk"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Cross-platform Git credential storage for multiple hosting providers
+cask "git-credential-manager"
+# Open Source Multimedia Framework
+cask "gstreamer-runtime"
+# Screenshot and screen recording tool
+cask "macshot"
+# Real-time strategy game engine for Westwood games
+cask "openra"
+vscode "dtoplak.vscode-glsllint"
+vscode "franciscosilva.gruber-darker"
+vscode "isudox.vscode-jetbrains-keybindings"
+vscode "ms-python.debugpy"
+vscode "ms-python.python"
+vscode "ms-python.vscode-pylance"
+vscode "ms-python.vscode-python-envs"
+vscode "ms-vscode.cmake-tools"
+vscode "ms-vscode.cpp-devtools"
+vscode "ms-vscode.cpptools"
+vscode "ms-vscode.cpptools-extension-pack"
+vscode "ms-vscode.cpptools-themes"
+vscode "ms-vscode.hexeditor"
+vscode "slevesque.shader"
+vscode "tamasfe.even-better-toml"
+vscode "trangius.jails-trangius-fork"
+vscode "usernamehw.errorlens"
+vscode "vadimcn.vscode-lldb"
+vscode "ziglang.vscode-zig"
+npm "@vscode/vsce"
+npm "vscode-langservers-extracted"

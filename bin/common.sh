@@ -14,6 +14,10 @@ git|.config/git|dir
 micro|.config/micro|dir
 fastfetch|.config/fastfetch|dir
 ghostty|Library/Application Support/com.mitchellh.ghostty/config.ghostty|file
+vscode|Library/Application Support/Code/User/settings.json|file
+vscode|Library/Application Support/Code/User/keybindings.json|file
+gh|.config/gh/config.yml|file
+homebrew|Brewfile|file
 EOF
 }
 
@@ -28,6 +32,7 @@ backup_excludes() {
 *~
 backups/
 buffers/
+plug/
 .claude/settings.local.json
 github-copilot/
 conf.d/*env*.fish

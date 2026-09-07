@@ -1,25 +1,28 @@
 # Dotfiles
 
-This repository keeps a git-managed backup of selected dotfiles in a Stow-style layout.
-
-## Backed Up
-
-- `~/.zshrc`
-- `~/.oh-my-zsh/custom/example.zsh`
-- `~/.oh-my-zsh/custom/themes/`
-- `~/.gitconfig`
-- `~/.config/git/`
-- `~/.config/micro/`
-- `~/.config/fastfetch/`
-- `~/Library/Application Support/com.mitchellh.ghostty/config.ghostty`
-
-## Commands
+- `zsh`
+- `oh-my-zsh`
+- `git`
+- `micro`
+- `fastfetch`
+- `ghostty`
+- `vscode`
+- `gh`
+- `homebrew`
 
 ```sh
+# Interactive menu
+bash ./bin/manage
+
+# Back up this Mac into the repo
 bash ./bin/backup
-bash ./bin/status
+
+# Preview restore
 bash ./bin/restore
-bash ./bin/restore --apply
-bash ./bin/restore --package zsh
-bash ./bin/restore --package zsh --apply
+
+# Restore everything
+bash ./bin/install
+
+# Restore one package
+bash ./bin/install --package zsh
 ```

@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${script_dir}/common.sh"
+
+choose_package() {
+  local packages=()
+  while IFS= read -r package; do
+    [[ -n "${package}" ]] && packages+=("${package}")
+  done < <(available_packages)
+
+  echo "0) All packages"
+  local i
+  for i in "${!packages[@]}"; do
+    printf '%d) %s\n' "$((i + 1))" "${packages[i]}"
+  done
+
+  local selection
+  read -r -p 'Choose a package: ' selection
+  if [[ "${selection}" == 0 ]]; then
+    CHOSEN_PACKAGE=""
+  elif [[ "${selection}" =~ ^[0-9]+$ ]] && (( selection >= 1 && selection <= ${#packages[@]} )); then
+    CHOSEN_PACKAGE="${packages[selection - 1]}"
+  else
+    echo "Invalid selection." >&2
+    exit 1
+  fi
+}
+
+echo "Dotfiles manager"
+echo "1) Back up this Mac into the repository"
+echo "2) Preview an install from the repository"
+echo "3) Install from the repository"
+echo "4) Show status"
+read -r -p 'Choose an action: ' action
+
+case "${action}" in
+  1)
+    echo "Backup currently syncs every declared package."
+    read -r -p 'Continue? [y/N] ' confirm
+    [[ "${confirm}" == [yY] ]] || exit 0
+    exec bash "${script_dir}/backup"
+    ;;
+  2|3)
+    choose_package
+    args=()
+    [[ -n "${CHOSEN_PACKAGE}" ]] && args+=(--package "${CHOSEN_PACKAGE}")
+    [[ "${action}" == 3 ]] && args=(--apply "${args[@]}")
+    exec bash "${script_dir}/restore" "${args[@]}"
+    ;;
+  4)
+    exec bash "${script_dir}/status"
+    ;;
+  *)
+    echo "Invalid selection." >&2
+    exit 1
+    ;;
+esac
