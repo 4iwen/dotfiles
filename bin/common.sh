@@ -33,6 +33,7 @@ backup_excludes() {
 backups/
 buffers/
 plug/
+palettero.cfg
 .claude/settings.local.json
 github-copilot/
 conf.d/*env*.fish

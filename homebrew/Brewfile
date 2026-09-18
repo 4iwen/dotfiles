@@ -93,6 +93,8 @@ brew "stow"
 brew "tmux"
 # Vulkan ICD Loader
 brew "vulkan-loader"
+# Vulkan validation layer manifest and dylib
+brew "vulkan-validationlayers"
 # Vulkan utilities and tools
 brew "vulkan-tools"
 # Web Assembly Binary Toolkit
