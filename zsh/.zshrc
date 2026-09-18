@@ -124,11 +124,11 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-if [[ "$(uname)" == "Darwin" ]] && command -v brew >/dev/null 2>&1; then
-	vvl_prefix="$(brew --prefix vulkan-validationlayers 2>/dev/null)"
-	if [[ -n "$vvl_prefix" && -d "$vvl_prefix" ]]; then
-		export VK_LAYER_PATH="$vvl_prefix/share/vulkan/explicit_layer.d"
-		export DYLD_FALLBACK_LIBRARY_PATH="$vvl_prefix/lib${DYLD_FALLBACK_LIBRARY_PATH:+:$DYLD_FALLBACK_LIBRARY_PATH}"
+vulkan_sdk_setup="/opt/SDKs/VulkanSDK/1.4.357.1/setup-env.sh"
+if [[ -f "$vulkan_sdk_setup" ]]; then
+	source "$vulkan_sdk_setup" >/dev/null
+	if [[ -d "$VULKAN_SDK/share/vulkan/explicit_layer.d" ]]; then
+		export VK_LAYER_PATH="$VULKAN_SDK/share/vulkan/explicit_layer.d"
 	fi
-	unset vvl_prefix
 fi
+unset vulkan_sdk_setup

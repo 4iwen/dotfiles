@@ -63,8 +63,6 @@ brew "llvm"
 brew "micro"
 # Minimalist GNU for Windows and GCC cross-compilers
 brew "mingw-w64"
-# Implementation of the Vulkan graphics and compute API on top of Metal
-brew "molten-vk"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Small build system for use with gyp or CMake
@@ -91,12 +89,6 @@ brew "python@3.11"
 brew "stow"
 # Terminal multiplexer
 brew "tmux"
-# Vulkan ICD Loader
-brew "vulkan-loader"
-# Vulkan validation layer manifest and dylib
-brew "vulkan-validationlayers"
-# Vulkan utilities and tools
-brew "vulkan-tools"
 # Web Assembly Binary Toolkit
 brew "wabt"
 # Executes a program periodically, showing output fullscreen
